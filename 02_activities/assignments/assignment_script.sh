@@ -1,14 +1,4 @@
-#!/bin/bash
-set -x
-
-############################################
-# DSI CONSULTING INC. Project setup script #
-############################################
-# This script creates standard analysis and output directories
-# for a new project. It also creates a README file with the
-# project name and a brief description of the project.
-# Then it unzips the raw data provided by the client.
-
+# first section of scripts are given
 if [ -d newproject ]; then
   echo "Recreating the newproject directory"
   rm -rf newproject
@@ -24,27 +14,43 @@ touch analysis/main.py
 curl -Lo rawdata.zip https://github.com/UofT-DSI/shell/raw/refs/heads/main/02_activities/assignments/rawdata.zip
 unzip -q rawdata.zip
 
-###########################################
-# Complete assignment here
+# this section of scripts are mine
+# step 1
+mkdir data
 
-# 1. Create a directory named data
+# step 2
+mv ./rawdata ./data/raw
 
-# 2. Move the ./rawdata directory to ./data/raw (eg. move it into ./data and rename it to raw)
+# step 3
+cd ./data/raw
 
-# 3. List the contents of the ./data/raw directory
+# step 4
+cd .. 
+mkdir processed 
+cd processed
+mkdir server_logs user_logs event_logs
 
-# 4. Create the directory ./data/processed, 
-#    then create the following sub-directories within it: server_logs, user_logs, and event_logs
+#step 5
+cd ..
+cd raw 
+cp server*.log ../processed/server_logs # or: cp server*.log ~/newproject/data/processed/server_logs/
 
-# 5. Copy all server log files (files with "server" in the name AND a .log extension) from ./data/raw to ./data/processed/server_logs
+#step 6
+cp user*.log ../processed/user_logs
+cp event*.log ../processed/event_logs
 
-# 6. Repeat the above step for user logs and event logs
+#step 7
+rm *ipaddr*.*
+cd ../processed/user_logs
+rm *ipaddr*.log
 
-# 7. For user privacy, remove all files containing IP addresses (files with "ipaddr" in the filename) from ./data/raw and ./data/processed/user_logs
-
-# 8. Create a file named ./data/inventory.txt that lists all the files in the subfolders of ./data/processed
-
-
-###########################################
+#step 8
+ls >> ~/git/newproject/data/inventory.txt
+cd ..
+cd event_logs
+ls >> ~/git/newproject/data/inventory.txt
+cd ..
+cd server_logs
+ls >> ~/git/newproject/data/inventory.txt
 
 echo "Project setup is complete!"
