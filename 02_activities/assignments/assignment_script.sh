@@ -45,12 +45,12 @@ cd ../processed/user_logs
 rm *ipaddr*.log
 
 #step 8
-ls >> ~/git/newproject/data/inventory.txt
+ls >> ~/shell/02_activities/assignments/newproject/data/inventory.txt
 cd ..
 cd event_logs
-ls >> ~/git/newproject/data/inventory.txt
+ls >> ~/shell/02_activities/assignments/newproject/data/inventory.txt
 cd ..
 cd server_logs
-ls >> ~/git/newproject/data/inventory.txt
+ls >> ~/shell/02_activities/assignments/newproject/data/inventory.txt
 
 echo "Project setup is complete!"
