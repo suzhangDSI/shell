@@ -23,6 +23,7 @@ mv ./rawdata ./data/raw
 
 # step 3
 cd ./data/raw
+ls
 
 # step 4
 cd .. 
