@@ -22,36 +22,26 @@ mkdir data
 mv ./rawdata ./data/raw
 
 # step 3
-cd ./data/raw
-ls
+ls ./data/raw
 
 # step 4
-cd .. 
-mkdir processed 
-cd processed
-mkdir server_logs user_logs event_logs
+mkdir ./data/processed 
+mkdir ./data/processed/server_logs ./data/processed/user_logs ./data/processed/event_logs
 
 #step 5
-cd ..
-cd raw 
-cp server*.log ../processed/server_logs # or: cp server*.log ~/newproject/data/processed/server_logs/
+cp ./data/raw/server*.log ./data/processed/server_logs
 
 #step 6
-cp user*.log ../processed/user_logs
-cp event*.log ../processed/event_logs
+cp ./data/raw/user*.log ./data/processed/user_logs
+cp ./data/raw/event*.log ./data/processed/event_logs
 
 #step 7
-rm *ipaddr*.*
-cd ../processed/user_logs
-rm *ipaddr*.log
+rm ./data/raw/*ipaddr*.*
+rm ./data/processed/user_logs/*ipaddr*.log
 
 #step 8
-ls >> ../../inventory.txt
-cd ..
-cd event_logs
-ls >> ../../inventory.txt
-cd ..
-cd server_logs
-ls >> ../../inventory.txt
+ls ./data/processed/server_logs >> ./data/inventory.txt
+ls ./data/processed/user_logs >> ./data/inventory.txt
+ls ./data/processed/event_logs >> ./data/inventory.txt
 
 echo "Project setup is complete!"
