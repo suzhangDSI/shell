@@ -1,4 +1,8 @@
 # first section of scripts are given
+
+#!/bin/bash
+set -x
+
 if [ -d newproject ]; then
   echo "Recreating the newproject directory"
   rm -rf newproject
